@@ -1,0 +1,10 @@
+.WelcomeCodeContainer {
+    margin: 30px;
+}
+
+.ButtonContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: fit-content;
+}

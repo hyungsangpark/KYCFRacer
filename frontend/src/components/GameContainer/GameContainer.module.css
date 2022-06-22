@@ -1,0 +1,28 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
+    width: 100%;
+}
+
+.timer {
+    font-weight: bold;
+    font-size: 1.7em;
+    margin-bottom: 10px;
+}
+
+.statContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statItem {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: bold;
+}

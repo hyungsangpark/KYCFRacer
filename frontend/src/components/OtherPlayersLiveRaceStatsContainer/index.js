@@ -1,0 +1,3 @@
+import OtherPlayersLiveRaceStatsContainer from './OtherPlayersLiveRaceStatsContainer';
+
+export default OtherPlayersLiveRaceStatsContainer;

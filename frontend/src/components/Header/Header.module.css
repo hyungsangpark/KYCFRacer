@@ -1,0 +1,23 @@
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-decoration: none;
+
+  user-select: none; /* Opera, Firefox, and all Chromium based browsers */
+  -webkit-user-select: none; /* Safari */
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  width: 100%;
+}
+
+.headerButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

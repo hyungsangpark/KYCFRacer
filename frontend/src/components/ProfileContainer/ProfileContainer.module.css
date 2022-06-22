@@ -1,0 +1,21 @@
+.MainContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.LeftContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 25%;
+}
+
+.RightContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+}
