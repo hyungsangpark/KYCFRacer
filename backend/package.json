@@ -18,7 +18,7 @@
     "express-jwt": "^6.1.1",
     "joi": "^17.6.0",
     "jwks-rsa": "^2.0.5",
-    "mongoose": "^6.2.8",
+    "mongoose": "6.2.8",
     "socket.io": "^4.4.1",
     "swagger-autogen": "^2.20.5",
     "swagger-jsdoc": "^6.1.0",
