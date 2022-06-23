@@ -8,7 +8,7 @@ dotenv.config();
 
 const MONGO_USERNAME = process.env.MONGO_USERNAME || "";
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD || "";
-const MONGO_URL = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@fearlessfrogs.afbe2.mongodb.net/myFirstDatabase`;
+const MONGO_URL = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@kycfracer.rrrpo.mongodb.net/?retryWrites=true&w=majority`;
 
 const JWKS_URI = process.env.JWKS_URI;
 const AUDIENCE = process.env.AUDIENCE;
@@ -17,7 +17,7 @@ const ISSUER = process.env.ISSUER;
 const SERVER_PORT = process.env.PORT ? Number(process.env.PORT) : 8080;
 
 if (!JWKS_URI || !AUDIENCE || !ISSUER) {
-  throw new Error('Missing environment variables');
+  throw new Error("Missing environment variables");
 }
 
 export const config = {
@@ -33,5 +33,5 @@ export const config = {
     jwt: JWKS_URI,
     audience: AUDIENCE,
     issuer: ISSUER,
-  }
+  },
 };
