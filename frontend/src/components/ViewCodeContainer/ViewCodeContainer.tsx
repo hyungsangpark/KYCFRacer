@@ -21,7 +21,7 @@ function ViewCodeContainer({ code, language }: Props) {
   return (
     <div className={classes.MainContainer}>
       <SyntaxHighlighter
-        language={language}
+        language={"text"}
         style={anOldHope}
         customStyle={{
           fontSize: "30px",

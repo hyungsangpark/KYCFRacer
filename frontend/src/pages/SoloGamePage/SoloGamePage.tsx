@@ -20,7 +20,7 @@ function SoloGamePage() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [started, setStarted] = React.useState(false);
   const [gameSettings, setGameSettings] = React.useState<SoloSettings>({
-    language: "javascript",
+    language: "bible",
     time: "30",
   });
 

@@ -26,7 +26,7 @@ interface Props {
  * @param updateStats - function that updates the players stats based on their performance in the game
  * @param language - programming language of the code that will be used for the game
  */
-function MultiplayerGamePlayerContainer({ started, onGameOver, gameSettings, code, otherPlayers, updateStats, language = "javascript" }: Props) {
+function MultiplayerGamePlayerContainer({ started, onGameOver, gameSettings, code, otherPlayers, updateStats, language = "bible" }: Props) {
 
   return (
     <div className={classes.MainContainer}>

@@ -27,7 +27,7 @@ interface Props {
  * @param language - the programming language of the code
  * @constructor
  */
-function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, language = "javascript"}: Props) {
+function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, language = "bible"}: Props) {
   const codeRef = React.useRef<any>();
 
   const [words, setWords] = React.useState<Word[]>([]);
@@ -250,7 +250,7 @@ function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, lan
       <div style={{textAlign: "center", height: 15, marginBottom: 15}}>{showEnterMessage &&
         <Typography>Press Enter to continue</Typography>}</div>
       <SyntaxHighlighter
-        language={language}
+        language={"text"}
         style={anOldHope}
         customStyle={{
           backgroundColor: "#1F1F1F",
