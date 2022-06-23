@@ -1,11 +1,11 @@
-import React, {useEffect} from "react";
-import {styled} from "@mui/material/styles";
-import {CircularProgress, Grid, Typography} from "@mui/material";
+import React, { useEffect } from "react";
+import { styled } from "@mui/material/styles";
+import { CircularProgress, Grid, Typography } from "@mui/material";
 import LobbyPlayerContainer from "../../components/LobbyPlayerContainer";
 import CustomButton from "../../components/Buttons";
-import {useLocation, useNavigate} from "react-router-dom";
-import {SocketContext} from "../../api/sockets/Sockets";
-import {Language, MultiplayerSettings} from "../../utils/Types/GameTypes";
+import { useLocation, useNavigate } from "react-router-dom";
+import { SocketContext } from "../../api/sockets/Sockets";
+import { Language, MultiplayerSettings } from "../../utils/Types/GameTypes";
 import MultiplayerGameSettings from "../../components/MultiplayerGameSettings/MultiplayerGameSettings";
 import MultiplayerGamePlayContainer from "../../components/MultiplayerGamePlayContainer";
 import {
@@ -94,7 +94,7 @@ function LobbyPage() {
 
     socketContext!.onLobbyError((data) => {
       console.log(data);
-      navigate("/multiplayer", {state: {error: data.error}});
+      navigate("/multiplayer", { state: { error: data.error } });
     });
 
     socketContext!.onUpdatePlayerProgress((data) => {
@@ -111,7 +111,7 @@ function LobbyPage() {
         codeBlock: data.code.code,
       });
 
-      setGameSettings({...gameSettings, language: data.language as Language});
+      setGameSettings({ ...gameSettings, language: data.language as Language });
 
       setPlayers(data.players);
       setGameStarted(true);
@@ -127,7 +127,7 @@ function LobbyPage() {
       });
 
       navigate("/results", {
-        state: {players: data.players, codeBlockId: code.id},
+        state: { players: data.players, codeBlockId: code.id },
       });
     });
 
@@ -160,7 +160,7 @@ function LobbyPage() {
 
     setIsLoading(true);
 
-    const LanguageSettingsOptions: Language[] = ["random", "javascript", "java", "python"];
+    const LanguageSettingsOptions: Language[] = ["random", "bible", "kycf"];
     let selectedLanguage = gameSettings.language;
 
     if (selectedLanguage === "random") {
@@ -170,33 +170,34 @@ function LobbyPage() {
     }
 
     socketContext!.startGame({
-      lobbyID: lobbyCode, settings: {
+      lobbyID: lobbyCode,
+      settings: {
         language: selectedLanguage,
         time: gameSettings.time,
         playerAmount: gameSettings.playerAmount,
-      }
+      },
     });
   };
 
   const onReadyClick = () => {
     setReady(!ready);
 
-    socketContext!.readyLobby({lobbyID: lobbyCode});
+    socketContext!.readyLobby({ lobbyID: lobbyCode });
   };
 
   const onGameOver = () => {
     console.log("Game Over Called");
-    socketContext!.completeGame({lobbyID: lobbyCode});
+    socketContext!.completeGame({ lobbyID: lobbyCode });
   };
 
   const updateStats = (stats: PlayerStats) => {
-    socketContext!.updatePlayerProgress({...stats, lobbyID: lobbyCode});
+    socketContext!.updatePlayerProgress({ ...stats, lobbyID: lobbyCode });
   };
 
   if (isLoading) {
     return (
       <PageContainer>
-        <CircularProgress/>
+        <CircularProgress />
       </PageContainer>
     );
   }
@@ -222,7 +223,7 @@ function LobbyPage() {
               Lobby Code: {lobbyCode.toUpperCase()}
             </Typography>
             {showSettings ? (
-              <MultiplayerGameSettings updateSettings={setGameSettings}/>
+              <MultiplayerGameSettings updateSettings={setGameSettings} />
             ) : (
               <LobbyPlayerContainer
                 players={(() => {
