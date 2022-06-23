@@ -1,36 +1,36 @@
-# name: Push stack to Heroku
+name: Push stack to Heroku
 
-# on:
-#   push:
-#     branches: [main]
-#   # Add below two lines when fixing CI
-#   # pull_requests:
-#   #   branches: [main]
+on:
+  push:
+    branches: [main]
+  # Add below two lines when fixing CI
+  # pull_requests:
+  #   branches: [main]
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v1
-#       - name: Release API
-#         uses: AkhileshNS/heroku-deploy@v3.12.12
-#         with:
-#           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-#           heroku_app_name: "fearless-frogs-project-api"
-#           heroku_email: ${{secrets.HEROKU_API_KEY}}
-#         env:
-#           HD_APP_BASE: "backend"
-#           MONGO_USERNAME: "fearless"
-#           MONGO_PASSWORD: "frog"
-#           SERVER_PORT: "8080"
-#       - name: Release Web Client
-#         uses: AkhileshNS/heroku-deploy@v3.12.12
-#         with:
-#           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-#           heroku_app_name: "fearless-frogs-project-webapp"
-#           heroku_email: ${{secrets.HEROKU_API_KEY}}
-#         env:
-#           HD_APP_BASE: "frontend"
-#           HD_REACT_APP_API_URL: "https://fearless-frogs-project-webapp.herokuapp.com"
-#           REACT_APP_SERVER_PORT: "8080"
-#           REACT_APP_SOCKET_IO: "https://fearless-frogs-project-api.herokuapp.com:8080"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Release API
+        uses: AkhileshNS/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "kycfracer-api"
+          heroku_email: ${{secrets.HEROKU_API_KEY}}
+        env:
+          HD_APP_BASE: "backend"
+          MONGO_USERNAME: "dbUser"
+          MONGO_PASSWORD: "nyvZof-derhe5-baqdiw"
+          SERVER_PORT: "8080"
+      - name: Release Web Client
+        uses: AkhileshNS/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "kycfracer"
+          heroku_email: ${{secrets.HEROKU_API_KEY}}
+        env:
+          HD_APP_BASE: "frontend"
+          HD_REACT_APP_API_URL: "https://kycfracer-api.herokuapp.com"
+          REACT_APP_SERVER_PORT: "8080"
+          REACT_APP_SOCKET_IO: "https://kycfracer-api.herokuapp.com"
