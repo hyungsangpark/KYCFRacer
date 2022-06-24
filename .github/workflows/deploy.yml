@@ -3,9 +3,6 @@ name: Push stack to Heroku
 on:
   push:
     branches: [main]
-  # Add below two lines when fixing CI
-  # pull_requests:
-  #   branches: [main]
 
 jobs:
   build:
