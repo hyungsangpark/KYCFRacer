@@ -8,7 +8,7 @@ import MainContentsContainer from "../MainContentsContainer";
 
 const SubheaderTypography = styled(Typography)({
   fontWeight: "400",
-  fontSize: 21,
+  fontSize: "2.5rem",
   marginRight: 15,
 });
 

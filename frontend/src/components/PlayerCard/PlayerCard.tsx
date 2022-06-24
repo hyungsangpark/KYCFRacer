@@ -13,7 +13,8 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 
 const CustomStyledPaper = styled(Paper)(({ theme }) => ({
   [`&.${paperClasses.root}`]: {
-    backgroundColor: theme.palette.secondary.dark,
+    backgroundColor: theme.palette.primary.light,
+    // border: `3 solid ${theme.palette.secondary.dark}`,
     minHeight: 60,
     display: "flex",
     alignItems: "center",
@@ -43,7 +44,7 @@ interface Props {
 /**
  * Displays a player card with an avatar and name.
  * It also allows optional component to be displayed on the right side of the card.
- * 
+ *
  * @param playerName The name of the player
  * @param playerAvatar The avatar of the player
  * @param selected Whether or not the player is selected
@@ -68,7 +69,8 @@ function PlayerCard({
         sx={{
           ...style,
           [`&.${paperClasses.root}`]: {
-            backgroundColor: selected && theme.palette.primary.main,
+            backgroundColor: selected && theme.palette.primary.dark,
+            color: selected && theme.palette.secondary.light,
           },
           ...(onClick && {
             "&:hover": {
@@ -86,7 +88,10 @@ function PlayerCard({
           />
           <Typography
             fontWeight="bold"
-            sx={{ marginLeft: "20px", fontSize: 25 }}
+            sx={{
+              marginLeft: "20px",
+              fontSize: "2.5rem",
+            }}
           >
             {playerName}
           </Typography>

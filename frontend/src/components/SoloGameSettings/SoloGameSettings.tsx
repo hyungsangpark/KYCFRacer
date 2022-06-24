@@ -55,7 +55,7 @@ function SoloGameSettings({ onStartGame, onBackClick }: Props) {
   return (
     <>
       <MainContentsContainer>
-        <Typography variant="h3">Solo Game Settings</Typography>
+        <Typography variant="h2">Solo Game Settings</Typography>
         <div className={classes.SettingItem}>
           <SettingKeyTypography>Time Limit</SettingKeyTypography>
           <SettingSelector

@@ -6,7 +6,7 @@ import theme from "../../utils/Theme";
 // Basis for the custom button.
 const CustomStyledButton = styled(Button)(({ theme }) => ({
   [`&.${buttonClasses.root}`]: {
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.main,
     // color: theme.palette.secondary.light,
     borderRadius: 1000,
     margin: "10px 20px",
@@ -53,8 +53,8 @@ function CustomButton({
       sx={{
         ...style,
         [`&.${buttonClasses.root}`]: {
-          backgroundColor: selected && theme.palette.primary.main,
-          // color: selected && theme.palette.primary.contrastText,
+          backgroundColor: selected && theme.palette.primary.dark,
+          color: selected && theme.palette.secondary.light,
           height,
           width,
           fontSize,

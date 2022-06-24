@@ -1,9 +1,9 @@
-import React from 'react';
-import classes from './MultiplayerGamePlayerContainer.module.css';
+import React from "react";
+import classes from "./MultiplayerGamePlayerContainer.module.css";
 import GameContainer from "../GameContainer/GameContainer";
-import {Language, MultiplayerSettings} from "../../utils/Types/GameTypes";
+import { Language, MultiplayerSettings } from "../../utils/Types/GameTypes";
 import OtherPlayersLiveRaceStatsContainer from "../OtherPlayersLiveRaceStatsContainer";
-import {Player, PlayerStats} from "../../utils/Types/SocketTypes";
+import { Player, PlayerStats } from "../../utils/Types/SocketTypes";
 
 interface Props {
   started: boolean;
@@ -26,12 +26,26 @@ interface Props {
  * @param updateStats - function that updates the players stats based on their performance in the game
  * @param language - programming language of the code that will be used for the game
  */
-function MultiplayerGamePlayerContainer({ started, onGameOver, gameSettings, code, otherPlayers, updateStats, language = "bible" }: Props) {
-
+function MultiplayerGamePlayerContainer({
+  started,
+  onGameOver,
+  gameSettings,
+  code,
+  otherPlayers,
+  updateStats,
+  language = "bible",
+}: Props) {
   return (
     <div className={classes.MainContainer}>
-      <OtherPlayersLiveRaceStatsContainer otherPlayers={otherPlayers}/>
-      <GameContainer language={language} started={started} onGameOver={onGameOver} totalGameTimeInSeconds={parseInt(gameSettings.time)} code={code} updateStats={updateStats}/>
+      <OtherPlayersLiveRaceStatsContainer otherPlayers={otherPlayers} />
+      <GameContainer
+        language={language}
+        started={started}
+        onGameOver={onGameOver}
+        totalGameTimeInSeconds={parseInt(gameSettings.time)}
+        code={code}
+        updateStats={updateStats}
+      />
     </div>
   );
 }

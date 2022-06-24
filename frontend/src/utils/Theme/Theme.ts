@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material";
+import { amber } from "@mui/material/colors";
 
 /**
  * This file creates a theme object for the application using MUI's createTheme function
@@ -21,22 +22,23 @@ const theme = createTheme({
       textAlign: "center",
     },
     h2: {
-      fontWeight: "300",
-      fontSize: "3rem",
-      textAlign: "center",
-    },
-    h3: {
       fontWeight: "700",
       fontSize: "4rem",
       marginBottom: "1rem",
       textAlign: "center",
     },
+    h3: {
+      fontWeight: "300",
+      fontSize: "3rem",
+      textAlign: "center",
+    },
   },
   palette: {
     primary: {
-      light: "#ffe069",
-      main: "#fdae37",
-      dark: "#c57f00",
+      // light: "#f8d48b",
+      light: amber[100],
+      main: "#F7CA6E",
+      dark: "#2B1D0D",
       contrastText: "#000000",
     },
     secondary: {

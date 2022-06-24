@@ -5,16 +5,16 @@ import { TextField, textFieldClasses } from "@mui/material";
 const CustomStyledInput = styled(TextField)(({ theme }) => ({
   [`&.${textFieldClasses.root}`]: {
     backgroundColor: theme.palette.primary.light,
-    // color: theme.palette.secondary.light,
     borderRadius: 1000,
     fieldset: {
       borderRadius: 1000,
       borderWidth: 0,
     },
     input: {
+      padding: 6,
       textAlign: "center",
       fontWeight: "normal",
-      fontSize: "1.5rem",
+      fontSize: "1.75rem",
     },
   },
 }));

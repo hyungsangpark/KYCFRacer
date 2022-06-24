@@ -1,7 +1,6 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import classes from "./HomePage.module.css";
-import WelcomeCode from "../../components/WelcomeCode";
 import CustomButton from "../../components/Buttons";
 import { useNavigate } from "react-router-dom";
 import PageContainer from "../../components/PageContainer";
@@ -22,21 +21,14 @@ function HomePage() {
     navigate("/multiplayer");
   };
 
-  const welcomeCodeText = `def codeRacerGreeting():
-    print(“Hello, World!”)
-    print(“CodeRacer welcomes you”)`;
-
   return (
     <PageContainer>
       <MainContentsContainer>
         <Typography variant="h1" textAlign="center">
           웰컴 투 KYCF Racer!
         </Typography>
-        {/* <div className={classes.WelcomeCodeContainer}>
-          <WelcomeCode code={welcomeCodeText} language="python" />
-        </div> */}
-        <div>
-          <Typography variant="h2">
+        <div className={classes.WelcomeCodeContainer}>
+          <Typography variant="h3">
             KYCF Racer에 오신 여러분을 환영합니다!
           </Typography>
         </div>

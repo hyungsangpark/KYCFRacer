@@ -13,8 +13,7 @@ import CustomButton from "../Buttons";
 
 const SettingKeyTypography = styled(Typography)(({ theme }) => ({
   fontWeight: "bold",
-  fontSize: 18,
-  marginBottom: 10,
+  fontSize: "2.5rem",
   flex: 2,
 }));
 
