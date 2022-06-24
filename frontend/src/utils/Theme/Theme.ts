@@ -6,33 +6,38 @@ import { createTheme } from "@mui/material";
 
 const theme = createTheme({
   typography: {
-    fontFamily: `"Roboto Mono", "Roboto", "sans-serif", "Arial"`,
-    fontSize: 14,
+    fontFamily: `"Dongle", "Roboto", "sans-serif", "Arial"`,
+    fontSize: 24,
+    fontWeightLight: 300,
     fontWeightRegular: 400,
-    fontWeightMedium: 600,
     fontWeightBold: 700,
     button: {
       textTransform: "none",
     },
     h1: {
       fontWeight: "bold",
-      fontSize: 48,
-      marginBottom: "10vh",
+      fontSize: "5rem",
+      marginBottom: "1rem",
       textAlign: "center",
     },
     h2: {
-      fontWeight: "bold",
-      fontSize: 28,
-      marginBottom: "10vh",
+      fontWeight: "300",
+      fontSize: "3rem",
       textAlign: "center",
-    }
+    },
+    h3: {
+      fontWeight: "700",
+      fontSize: "4rem",
+      marginBottom: "1rem",
+      textAlign: "center",
+    },
   },
   palette: {
-    mode: "dark",
     primary: {
-      light: "#adff00",
-      main: "#4fcc4d",
-      dark: "#3DA93B",
+      light: "#ffe069",
+      main: "#fdae37",
+      dark: "#c57f00",
+      contrastText: "#000000",
     },
     secondary: {
       light: "#FFFFFF",

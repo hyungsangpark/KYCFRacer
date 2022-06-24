@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./ViewCodeContainer.module.css";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import {anOldHope} from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { anOldHope } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 interface Props {
   code: string;

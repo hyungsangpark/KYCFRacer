@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import {anOldHope} from 'react-syntax-highlighter/dist/cjs/styles/hljs';
-import {Typography} from "@mui/material";
-import {Word} from "./Datastructures/Word";
-import {Language} from "../../utils/Types/GameTypes";
+import React, { useEffect } from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { anOldHope } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { Typography } from "@mui/material";
+import { Word } from "./Datastructures/Word";
+import { Language } from "../../utils/Types/GameTypes";
 
 interface Props {
   started: boolean;
@@ -27,7 +27,14 @@ interface Props {
  * @param language - the programming language of the code
  * @constructor
  */
-function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, language = "bible"}: Props) {
+function CodeInput({
+  started,
+  checkKeyPressed,
+  code,
+  onGameOver,
+  setProgress,
+  language = "bible",
+}: Props) {
   const codeRef = React.useRef<any>();
 
   const [words, setWords] = React.useState<Word[]>([]);
@@ -45,7 +52,9 @@ function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, lan
    */
   useEffect(() => {
     const codeChildren = codeRef.current.childNodes;
-    const codeTextNodes = Array.from(codeChildren).filter((child: any) => child.nodeName !== "SPAN");
+    const codeTextNodes = Array.from(codeChildren).filter(
+      (child: any) => child.nodeName !== "SPAN"
+    );
 
     codeTextNodes.forEach((node: any) => {
       const span = document.createElement("span");
@@ -95,7 +104,6 @@ function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, lan
 
         setWordIndex(wordIndex - 1);
         setCharIndex(prevWordLength - 1);
-
       } else {
         words[wordIndex].remove(charIndex);
         words[wordIndex].setCursor(charIndex - 1);
@@ -104,9 +112,7 @@ function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, lan
 
         setCharIndex(charIndex - 1);
       }
-
-    }
-    else if (words[wordIndex].isNewLineCharacter(charIndex)) {
+    } else if (words[wordIndex].isNewLineCharacter(charIndex)) {
       // Whenever Enter is called if cursor is not at end of line then it is registered as a normal character press
       // Otherwise it is registered as a new line press and the cursor is moved to the next line
       if (keyValue !== "Enter") {
@@ -123,26 +129,35 @@ function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, lan
       // If it is a tab press then the cursor is attempted to move double spaces to the right
       const first = addKey(wordIndex, charIndex, " ");
 
-      if (words[first.finalWordIndex].isNewLineCharacter(first.finalCharIndex)) {
+      if (
+        words[first.finalWordIndex].isNewLineCharacter(first.finalCharIndex)
+      ) {
         setWordIndex(first.finalWordIndex);
         setCharIndex(first.finalCharIndex);
 
         return;
       }
 
-      const {finalWordIndex, finalCharIndex} = addKey(first.finalWordIndex, first.finalCharIndex, " ");
+      const { finalWordIndex, finalCharIndex } = addKey(
+        first.finalWordIndex,
+        first.finalCharIndex,
+        " "
+      );
 
       setWordIndex(finalWordIndex);
       setCharIndex(finalCharIndex);
-
     } else if (keyValue !== "Shift") {
       // If it is not shift then it is a normal character press so add it normally
-      const {finalWordIndex, finalCharIndex} = addKey(wordIndex, charIndex, keyValue);
+      const { finalWordIndex, finalCharIndex } = addKey(
+        wordIndex,
+        charIndex,
+        keyValue
+      );
 
       setWordIndex(finalWordIndex);
       setCharIndex(finalCharIndex);
     }
-  }
+  };
 
   /**
    * This method is a helper method to keyDown event handler whenever a key input should add a key.
@@ -171,7 +186,7 @@ function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, lan
 
         return {
           finalWordIndex,
-          finalCharIndex
+          finalCharIndex,
         };
       }
 
@@ -179,7 +194,6 @@ function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, lan
 
       finalWordIndex = finalWordIndex + 1;
       finalCharIndex = 0;
-
     } else {
       words[finalWordIndex].setCursor(finalCharIndex + 1);
       finalCharIndex++;
@@ -189,9 +203,9 @@ function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, lan
 
     return {
       finalWordIndex,
-      finalCharIndex
+      finalCharIndex,
     };
-  }
+  };
 
   /**
    * This method is used to calculate the progress as a percentage of the code typed out whether wrong or right
@@ -218,11 +232,17 @@ function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, lan
     }
 
     return (currentProgress / totalLength) * 100;
-  }
+  };
 
   return (
     <div
-      style={{outline: "none", width: "100%", position: "relative", marginTop: 20, marginBottom: 20}}
+      style={{
+        outline: "none",
+        width: "100%",
+        position: "relative",
+        marginTop: 20,
+        marginBottom: 20,
+      }}
       tabIndex={-1}
       onKeyDown={(e) => {
         e.preventDefault();
@@ -232,23 +252,24 @@ function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, lan
       onBlur={() => setInFocus(false)}
       id={"game-container"}
     >
-
-      {
-        !inFocus &&
-        <Typography style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          fontSize: 25,
-          zIndex: 10
-        }}>
+      {!inFocus && (
+        <Typography
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            fontSize: 25,
+            zIndex: 10,
+          }}
+        >
           Click to focus
         </Typography>
-      }
+      )}
 
-      <div style={{textAlign: "center", height: 15, marginBottom: 15}}>{showEnterMessage &&
-        <Typography>Press Enter to continue</Typography>}</div>
+      <div style={{ textAlign: "center", height: 15, marginBottom: 15 }}>
+        {showEnterMessage && <Typography>Press Enter to continue</Typography>}
+      </div>
       <SyntaxHighlighter
         language={"text"}
         style={anOldHope}
@@ -259,13 +280,11 @@ function CodeInput({started, checkKeyPressed, code, onGameOver, setProgress, lan
           paddingRight: 30,
           paddingBottom: 30,
           margin: 0,
-          filter: !inFocus ? "blur(5px)" : "none"
+          filter: !inFocus ? "blur(5px)" : "none",
         }}
-        codeTagProps={
-          {
-            ref: codeRef,
-          }
-        }
+        codeTagProps={{
+          ref: codeRef,
+        }}
       >
         {code}
       </SyntaxHighlighter>

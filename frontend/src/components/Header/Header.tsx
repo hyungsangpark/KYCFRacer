@@ -1,28 +1,21 @@
 import React from "react";
-import {styled} from "@mui/material/styles";
-import {AppBar, CircularProgress, Toolbar, Typography} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { AppBar, CircularProgress, Toolbar, Typography } from "@mui/material";
 import styles from "./Header.module.css";
-import {Link, Outlet, useNavigate} from "react-router-dom";
-import {useAuth0} from "@auth0/auth0-react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const Icon = styled(Typography)(({theme}) => ({
+const Name = styled(Typography)(({ theme }) => ({
   fontWeight: 700,
-  color: theme.palette.primary.light,
-  fontSize: "36px",
-  paddingRight: "16px",
+  fontSize: "2.5rem",
+  color: theme.palette.primary.contrastText,
 }));
 
-const Name = styled(Typography)(({theme}) => ({
-  fontWeight: 700,
-  fontSize: "32px",
-  color: theme.palette.secondary.light,
-}));
-
-const HeaderButton = styled(Typography)(({theme}) => ({
+const HeaderButton = styled(Typography)(({ theme }) => ({
   color: theme.palette.secondary.light,
   fontSize: "21px",
   textAlign: "right",
-  '&:hover': {
+  "&:hover": {
     cursor: "pointer",
   },
 }));
@@ -35,7 +28,7 @@ const HeaderButton = styled(Typography)(({theme}) => ({
  */
 function Header() {
   const navigate = useNavigate();
-  const {isLoading, isAuthenticated, loginWithRedirect, logout} = useAuth0();
+  const { isLoading, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   console.log("Authenticated: " + isAuthenticated);
 
@@ -44,24 +37,33 @@ function Header() {
       <AppBar position="static" elevation={3}>
         <Toolbar className={styles.headerContainer}>
           <Link to="/" className={styles.logoContainer}>
-            <Icon>$</Icon>
-            <Name>CodeRacer</Name>
+            {/* <Icon>$</Icon> */}
+            <Name>KYCF Racer</Name>
           </Link>
-          {
-            isLoading ?
-              <CircularProgress/>
-              :
-              isAuthenticated ?
-                <div className={styles.headerButtonContainer}>
-                  <HeaderButton sx={{marginRight: 4}} onClick={() => navigate("/profile")}>Profile</HeaderButton>
-                  <HeaderButton onClick={() => logout({returnTo: window.location.origin})}>Logout</HeaderButton>
-                </div>
-                :
-                <HeaderButton onClick={() => loginWithRedirect()}>Login</HeaderButton>
-          }
+          {isLoading ? (
+            <CircularProgress />
+          ) : isAuthenticated ? (
+            <div className={styles.headerButtonContainer}>
+              <HeaderButton
+                sx={{ marginRight: 4 }}
+                onClick={() => navigate("/profile")}
+              >
+                Profile
+              </HeaderButton>
+              <HeaderButton
+                onClick={() => logout({ returnTo: window.location.origin })}
+              >
+                Logout
+              </HeaderButton>
+            </div>
+          ) : (
+            <HeaderButton onClick={() => loginWithRedirect()}>
+              Login
+            </HeaderButton>
+          )}
         </Toolbar>
       </AppBar>
-      <Outlet/>
+      <Outlet />
     </>
   );
 }

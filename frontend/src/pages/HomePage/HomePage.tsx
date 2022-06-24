@@ -29,11 +29,16 @@ function HomePage() {
   return (
     <PageContainer>
       <MainContentsContainer>
-        <Typography variant="h4" textAlign="center">
-          Learn Programming Through Competition
+        <Typography variant="h1" textAlign="center">
+          웰컴 투 KYCF Racer!
         </Typography>
-        <div className={classes.WelcomeCodeContainer}>
+        {/* <div className={classes.WelcomeCodeContainer}>
           <WelcomeCode code={welcomeCodeText} language="python" />
+        </div> */}
+        <div>
+          <Typography variant="h2">
+            KYCF Racer에 오신 여러분을 환영합니다!
+          </Typography>
         </div>
       </MainContentsContainer>
       <div className={classes.ButtonContainer}>

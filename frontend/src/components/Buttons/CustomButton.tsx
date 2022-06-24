@@ -6,8 +6,8 @@ import theme from "../../utils/Theme";
 // Basis for the custom button.
 const CustomStyledButton = styled(Button)(({ theme }) => ({
   [`&.${buttonClasses.root}`]: {
-    backgroundColor: theme.palette.secondary.dark,
-    color: theme.palette.secondary.light,
+    backgroundColor: theme.palette.primary.light,
+    // color: theme.palette.secondary.light,
     borderRadius: 1000,
     margin: "10px 20px",
     whiteSpace: "nowrap",
@@ -26,7 +26,7 @@ interface Props {
 /**
  * A custom button used throughout this application.
  * By default, it returns a large button with a large button dimensions.
- * 
+ *
  * @param size The size of the button; either "small", "medium", or "large".
  * @param onClick The function to call when the button is clicked.
  * @param children The text to display on the button.
@@ -44,15 +44,17 @@ function CustomButton({
   // Define the button size.
   const height = size === "small" ? 32 : size === "medium" ? 48 : 64;
   const width = size === "small" ? 96 : size === "medium" ? 128 : 256;
-  const fontSize = size === "small" ? 12 : size === "medium" ? 16 : 20;
+  const fontSize =
+    size === "small" ? "1rem" : size === "medium" ? "1.5rem" : "2rem";
 
   return (
     <CustomStyledButton
+      variant="contained"
       sx={{
         ...style,
         [`&.${buttonClasses.root}`]: {
           backgroundColor: selected && theme.palette.primary.main,
-          color: selected && theme.palette.background.default,
+          // color: selected && theme.palette.primary.contrastText,
           height,
           width,
           fontSize,
