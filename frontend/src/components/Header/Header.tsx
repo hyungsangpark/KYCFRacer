@@ -12,8 +12,8 @@ const Name = styled(Typography)(({ theme }) => ({
 }));
 
 const HeaderButton = styled(Typography)(({ theme }) => ({
-  color: theme.palette.secondary.light,
-  fontSize: "21px",
+  color: theme.palette.primary.contrastText,
+  fontSize: "2rem",
   textAlign: "right",
   "&:hover": {
     cursor: "pointer",
