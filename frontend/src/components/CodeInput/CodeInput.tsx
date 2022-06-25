@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { anOldHope } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { anOldHope, atomOneLight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { Typography } from "@mui/material";
 import { Word } from "./Datastructures/Word";
 import { Language } from "../../utils/Types/GameTypes";
+import theme from "../../utils/Theme"
 
 interface Props {
   started: boolean;
@@ -274,7 +275,7 @@ function CodeInput({
         language={"text"}
         style={anOldHope}
         customStyle={{
-          backgroundColor: "#1F1F1F",
+          backgroundColor: theme.palette.secondary.dark,
           fontSize: 28,
           paddingLeft: 30,
           paddingRight: 30,

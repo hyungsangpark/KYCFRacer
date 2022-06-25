@@ -1,13 +1,13 @@
 import React from "react";
-import {styled} from '@mui/material/styles';
-import LinearProgress, {linearProgressClasses} from '@mui/material/LinearProgress';
+import { styled } from '@mui/material/styles';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 
 interface Props {
   progress: number;
   style?: React.CSSProperties;
 }
 
-const BorderLinearProgress = styled(LinearProgress)(({theme}) => ({
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 25,
   [`&.${linearProgressClasses.colorPrimary}`]: {
     backgroundColor: theme.palette.secondary.main,
@@ -18,16 +18,14 @@ const BorderLinearProgress = styled(LinearProgress)(({theme}) => ({
 }));
 
 /**
- * 
+ *
  * @param progress the progress state of a player in game
  * @param style the CSSProperties of the progress bar
- * @constructor 
+ * @constructor
  */
-function ProgressBar({progress, style}: Props) {
-
-
+function ProgressBar({ progress, style }: Props) {
   return (
-      <BorderLinearProgress style={{...style, width: "100%"}} variant="determinate" value={progress}/>
+    <BorderLinearProgress style={{ ...style, width: "100%" }} variant="determinate" value={progress}/>
   );
 }
 

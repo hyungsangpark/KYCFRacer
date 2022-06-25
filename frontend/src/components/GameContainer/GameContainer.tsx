@@ -19,7 +19,7 @@ const StatItemTypography = styled(Typography)(({ theme }) => ({
   marginLeft: 5,
   marginRight: 5,
   fontWeight: "bold",
-  fontSize: 18,
+  fontSize: "2rem",
 }));
 
 interface Props {
@@ -92,15 +92,15 @@ function GameContainer({
 
       setProgress(progress);
       updateStats &&
-        updateStats({
-          CPM: getCPM(),
-          Accuracy: getAccuracy(),
-          Errors: wrongKeyCount,
-          Progress: progress,
-          correctKeyCount,
-          wrongKeyCount,
-          timeLeftInSeconds: minutes * 60 + seconds,
-        });
+      updateStats({
+        CPM: getCPM(),
+        Accuracy: getAccuracy(),
+        Errors: wrongKeyCount,
+        Progress: progress,
+        correctKeyCount,
+        wrongKeyCount,
+        timeLeftInSeconds: minutes * 60 + seconds,
+      });
 
       onGameOver(getCPM(), getAccuracy(), wrongKeyCount);
     }
@@ -156,17 +156,18 @@ function GameContainer({
         setProgress={(num) => {
           setProgress(num);
           updateStats &&
-            updateStats({
-              CPM: getCPM(),
-              Accuracy: getAccuracy(),
-              Errors: wrongKeyCount,
-              Progress: num,
-              correctKeyCount,
-              wrongKeyCount,
-              timeLeftInSeconds: minutes * 60 + seconds,
-            });
+          updateStats({
+            CPM: getCPM(),
+            Accuracy: getAccuracy(),
+            Errors: wrongKeyCount,
+            Progress: num,
+            correctKeyCount,
+            wrongKeyCount,
+            timeLeftInSeconds: minutes * 60 + seconds,
+          });
         }}
         code={code}
+        // code={"태초에 하나님이 천지를 창조하시니라."}
         onGameOver={() => {
           setProgress(100);
           setGameOver(true);

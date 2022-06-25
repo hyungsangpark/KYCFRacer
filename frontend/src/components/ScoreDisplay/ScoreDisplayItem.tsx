@@ -13,6 +13,8 @@ interface Props {
  *
  * @param score - The score of the player
  * @param label - The type of score
+ * @param nextLineLabel - Optional 2nd line in label
+ * @param size - Size of the component
  * @constructor
  */
 function ScoreDisplayItem({
@@ -21,8 +23,8 @@ function ScoreDisplayItem({
   nextLineLabel,
   size = "large",
 }: Props) {
-  const scoreSize = size === "small" ? 30 : size === "large" ? 80 : 45;
-  const labelSize = size === "small" ? 10 : size === "large" ? 20 : 12;
+  const scoreSize = size === "small" ? "2rem" : size === "large" ? "5rem" : "3rem";
+  const labelSize = size === "small" ? "0.75rem" : size === "large" ? "2rem" : "1.12rem";
 
   return (
     <div
