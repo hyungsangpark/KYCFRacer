@@ -21,6 +21,10 @@ function HomePage() {
     navigate("/multiplayer");
   };
 
+  const onAddTextClick = () => {
+    navigate("/add");
+  }
+
   return (
     <PageContainer>
       <MainContentsContainer>
@@ -37,6 +41,9 @@ function HomePage() {
         <CustomButton onClick={onPlaySoloClick}>Play Solo</CustomButton>
         <CustomButton onClick={onPlayMultiplayerClick}>
           Play Multiplayer
+        </CustomButton>
+        <CustomButton onClick={onAddTextClick}>
+          Add Text
         </CustomButton>
       </div>
     </PageContainer>
