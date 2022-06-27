@@ -85,3 +85,7 @@ export const setUserAvatar: (token: string, avatarId: string) => Promise<AxiosRe
 export const getCodeBlock: (codeBlockId: string) => Promise<AxiosResponse<{codeBlock: CodeBlock}>> = async (codeBlockId: string) => {
   return await axios.get(`${API_ENDPOINT}/codeblocks/${codeBlockId}`);
 }
+
+export const createCodeBlock: (codeBlock: CodeBlock) => Promise<AxiosResponse<CodeBlockResponse>> = async (codeBlock: CodeBlock) => {
+  return await axios.post(`${API_ENDPOINT}/codeblocks`, codeBlock);
+}

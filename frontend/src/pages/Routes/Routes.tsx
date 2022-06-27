@@ -7,6 +7,7 @@ import Header from "../../components/Header/Header";
 import GameEndPage from "../GameEndPage/GameEndPage";
 import HomePage from "../HomePage/HomePage";
 import ProfilePage from "../ProfilePage/ProfilePage";
+import AddCodeBlockPage from "../AddCodeBlockPage/AddCodeBlockPage";
 
 /**
  * This is the router manager for the application which handles routing for the application.
@@ -21,6 +22,7 @@ function Routes() {
         <Route path="lobby" element={<LobbyPage />} />
         <Route path="results" element={<GameEndPage />} />
         <Route path="profile" element={<ProfilePage />} />
+        <Route path="add" element={<AddCodeBlockPage />} />
         <Route index element={<HomePage />} />
 
         {/* If an invalid link is input, re-direct to main page. */}
