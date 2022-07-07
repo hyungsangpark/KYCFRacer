@@ -9,6 +9,7 @@ interface Props {
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 25,
+  borderRadius: "6px",
   [`&.${linearProgressClasses.colorPrimary}`]: {
     backgroundColor: theme.palette.secondary.main,
   },

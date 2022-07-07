@@ -1,7 +1,8 @@
 import React from "react";
 import classes from "./ViewCodeContainer.module.css";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { anOldHope } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { a11yLight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+
 
 interface Props {
   code: string;
@@ -16,15 +17,16 @@ interface Props {
  * @param language - language of the code block
  */
 function ViewCodeContainer({ code, language }: Props) {
-  console.log(code);
-
   return (
     <div className={classes.MainContainer}>
       <SyntaxHighlighter
         language={"text"}
-        style={anOldHope}
+        style={a11yLight}
         customStyle={{
           fontSize: "30px",
+          borderRadius: "10px",
+          border: "2px solid #00000020",
+          margin: 0
         }}
       >
         {code}

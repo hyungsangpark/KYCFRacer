@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { Typography } from "@mui/material";
 import ProgressBar from "../ProgressBar";
 import CodeInput from "../CodeInput";
@@ -167,7 +167,6 @@ function GameContainer({
           });
         }}
         code={code}
-        // code={"태초에 하나님이 천지를 창조하시니라."}
         onGameOver={() => {
           setProgress(100);
           setGameOver(true);

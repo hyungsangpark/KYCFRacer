@@ -25,7 +25,9 @@ export class Letter {
 
   setAsBlank(): void {
     this.reset();
-    this.letter.style.color = this.parent.style.color ? this.parent.style.color.replace(")", ", 0.3)") : "rgb(255,255,255, 0.3)";
+    this.letter.style.color = this.parent.style.color
+      ? this.parent.style.color.replace(")", ", 0.3)")
+      : "rgb(0, 0, 0, 0.3)";
   }
 
   setCursor(): void {

@@ -5,12 +5,13 @@ import {Typography} from "@mui/material";
 
 const MainStatTypography = styled(Typography)(({theme}) => ({
   fontWeight: 'bold',
-  fontSize: 18,
+  fontSize: "1.75rem",
   marginRight: 3,
+
 }));
 
 const SubStatTypography = styled(Typography)(({theme}) => ({
-  fontSize: 10,
+  fontSize: "1.25rem",
   marginRight: 12,
   fontWeight: 'lighter',
 }));

@@ -26,6 +26,7 @@ function GameEndMultiplayerContainer({
   return (
     <div className={classes.MainContainer}>
       <LobbyPlayerContainer players={players} includeNumbers showStats />
+      <div style={{ height: "1rem" }} />
       {isViewCode && (
         <ViewCodeContainer
           code={codeBlock?.code}

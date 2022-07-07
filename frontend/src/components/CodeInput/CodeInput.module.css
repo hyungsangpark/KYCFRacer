@@ -8,7 +8,7 @@
 
 .current {
     border-left: 1px solid;
-    border-color: rgb(173, 255, 0, 1);
+    border-color: rgb(0, 0, 0, 1);
     box-sizing: border-box;
     animation-name: currentAnimation;
     animation-iteration-count: infinite;
@@ -23,6 +23,6 @@
 
 @keyframes currentAnimation {
     50% {
-        border-color: rgb(173, 255, 0, 0);
+        border-color: rgb(0, 0, 0, 0);
     }
 }

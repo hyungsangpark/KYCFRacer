@@ -107,7 +107,7 @@ function GameEndPage() {
   return (
     <PageContainer>
       <MainContentsContainer>
-        <Typography variant="h1">Race Complete!</Typography>
+        <Typography variant="h1">Assigment Complete!</Typography>
         {isMulti ? (
           <GameEndMultiplayerContainer
             codeBlock={codeBlock}

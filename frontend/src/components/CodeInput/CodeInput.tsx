@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { anOldHope, atomOneLight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { a11yLight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { Typography } from "@mui/material";
 import { Word } from "./Datastructures/Word";
 import { Language } from "../../utils/Types/GameTypes";
-import theme from "../../utils/Theme"
 
 interface Props {
   started: boolean;
@@ -60,6 +59,7 @@ function CodeInput({
     codeTextNodes.forEach((node: any) => {
       const span = document.createElement("span");
       span.textContent = node.textContent;
+      // span.style.color = "#343434";
       node.parentNode.replaceChild(span, node);
     });
 
@@ -253,35 +253,35 @@ function CodeInput({
       onBlur={() => setInFocus(false)}
       id={"game-container"}
     >
-      {!inFocus && (
+      {(!started || !inFocus) && (
         <Typography
           style={{
             position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            fontSize: 25,
+            fontSize: "2rem",
             zIndex: 10,
           }}
         >
-          Click to focus
-        </Typography>
-      )}
+          {!started ? "Game will start soon..." : "Click to focus"}
+        </Typography>)}
 
       <div style={{ textAlign: "center", height: 15, marginBottom: 15 }}>
         {showEnterMessage && <Typography>Press Enter to continue</Typography>}
       </div>
       <SyntaxHighlighter
         language={"text"}
-        style={anOldHope}
+        style={a11yLight}
         customStyle={{
-          backgroundColor: theme.palette.secondary.dark,
+          borderRadius: "10px",
           fontSize: 28,
           paddingLeft: 30,
           paddingRight: 30,
           paddingBottom: 30,
+          border: "2px solid #ccc",
           margin: 0,
-          filter: !inFocus ? "blur(5px)" : "none",
+          filter: !inFocus || !started ? "blur(5px)" : "none",
         }}
         codeTagProps={{
           ref: codeRef,
