@@ -125,7 +125,7 @@ function GameEndPage() {
       <div className={classes.ButtonContainer}>
         <CustomButton onClick={onBackClick}>Back</CustomButton>
         <CustomButton onClick={() => setViewCode(!isViewCode)} size="large">
-          {isViewCode ? "Close Code" : "View Code"}
+          {isViewCode ? "Close Text" : "View Text"}
         </CustomButton>
       </div>
     </PageContainer>

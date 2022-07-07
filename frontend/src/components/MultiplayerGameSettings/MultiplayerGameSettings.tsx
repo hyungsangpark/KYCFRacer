@@ -56,7 +56,7 @@ function MultiplayerGameSettings({ updateSettings }: Props) {
   return (
     <div className={classes.MainContainer}>
       <div className={classes.SettingItem}>
-        <SettingKeyTypography>Time Limit</SettingKeyTypography>
+        <SettingKeyTypography>Time Limit (sec)</SettingKeyTypography>
         <SettingSelector
           style={{ flex: 1 }}
           options={TimeSettingOptions}
@@ -65,7 +65,7 @@ function MultiplayerGameSettings({ updateSettings }: Props) {
         />
       </div>
       <div className={classes.SettingItem}>
-        <SettingKeyTypography>Language</SettingKeyTypography>
+        <SettingKeyTypography>Texts</SettingKeyTypography>
         <SettingSelector
           style={{ flex: 1 }}
           options={LanguageSettingsOptions}

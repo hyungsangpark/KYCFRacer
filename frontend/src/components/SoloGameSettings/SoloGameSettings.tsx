@@ -55,9 +55,9 @@ function SoloGameSettings({ onStartGame, onBackClick }: Props) {
   return (
     <>
       <MainContentsContainer>
-        <Typography variant="h2">Solo Game Settings</Typography>
+        <Typography variant="h2">Start Single Player</Typography>
         <div className={classes.SettingItem}>
-          <SettingKeyTypography>Time Limit</SettingKeyTypography>
+          <SettingKeyTypography>Time Limit (sec)</SettingKeyTypography>
           <SettingSelector
             style={{ flex: 1 }}
             options={TimeSettingOptions}
@@ -66,7 +66,7 @@ function SoloGameSettings({ onStartGame, onBackClick }: Props) {
           />
         </div>
         <div className={classes.SettingItem}>
-          <SettingKeyTypography>Language</SettingKeyTypography>
+          <SettingKeyTypography>Texts</SettingKeyTypography>
           <SettingSelector
             style={{ flex: 1 }}
             options={LanguageSettingsOptions}
