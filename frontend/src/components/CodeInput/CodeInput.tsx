@@ -116,7 +116,7 @@ function CodeInput({
     } else if (words[wordIndex].isNewLineCharacter(charIndex)) {
       // Whenever Enter is called if cursor is not at end of line then it is registered as a normal character press
       // Otherwise it is registered as a new line press and the cursor is moved to the next line
-      if (keyValue !== "Enter") {
+      if (keyValue !== "Enter" && keyValue !== " ") {
         setShowEnterMessage(true);
         return;
       }
