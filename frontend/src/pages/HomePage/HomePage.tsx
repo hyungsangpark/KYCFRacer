@@ -41,12 +41,12 @@ function HomePage() {
         <CustomButton onClick={onPlaySoloClick}>
           Singleplayer 하기
         </CustomButton>
-        <CustomButton onClick={onPlayMultiplayerClick}>
-          Multiplayer 하기
-        </CustomButton>
-        <CustomButton onClick={onAddTextClick}>
-          Add Text
-        </CustomButton>
+        {/*<CustomButton onClick={onPlayMultiplayerClick}>*/}
+        {/*  Multiplayer 하기*/}
+        {/*</CustomButton>*/}
+        {/*<CustomButton onClick={onAddTextClick}>*/}
+        {/*  Add Text*/}
+        {/*</CustomButton>*/}
       </div>
     </PageContainer>
   );

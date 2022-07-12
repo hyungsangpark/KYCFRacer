@@ -32,8 +32,8 @@ function SoloGameSettings({ onStartGame, onBackClick }: Props) {
   const TimeSettingOptions: Time[] = ["30", "60", "90", "120"];
   const LanguageSettingsOptions: Language[] = ["random", "bible", "kycf"];
 
-  const [selectedTimeIndex, setSelectedTimeIndex] = useState(0);
-  const [selectedLanguageIndex, setSelectedLanguageIndex] = useState(0);
+  const [selectedTimeIndex, setSelectedTimeIndex] = useState(2);
+  const [selectedLanguageIndex, setSelectedLanguageIndex] = useState(2);
 
   const onStartClick = () => {
     let selectedLanguage = LanguageSettingsOptions[selectedLanguageIndex];
@@ -59,6 +59,7 @@ function SoloGameSettings({ onStartGame, onBackClick }: Props) {
         <div className={classes.SettingItem}>
           <SettingKeyTypography>Time Limit (sec)</SettingKeyTypography>
           <SettingSelector
+            disabled
             style={{ flex: 1 }}
             options={TimeSettingOptions}
             selectedIndex={selectedTimeIndex}
@@ -68,6 +69,7 @@ function SoloGameSettings({ onStartGame, onBackClick }: Props) {
         <div className={classes.SettingItem}>
           <SettingKeyTypography>Texts</SettingKeyTypography>
           <SettingSelector
+            disabled
             style={{ flex: 1 }}
             options={LanguageSettingsOptions}
             selectedIndex={selectedLanguageIndex}

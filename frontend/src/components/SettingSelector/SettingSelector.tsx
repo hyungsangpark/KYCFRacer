@@ -40,6 +40,7 @@ interface Props {
   onSelect: (option: number) => void;
   selectedIndex: number;
   style?: React.CSSProperties;
+  disabled?: boolean;
 }
 
 /**
@@ -48,9 +49,10 @@ interface Props {
  * @param onSelect function that is called when option is changed
  * @param selectedIndex The index of the option in the options array
  * @param style CSSProperties object of this component
+ * @param disabled boolean if this component is disabled
  * @constructor
  */
-function SettingSelector({ options, onSelect, selectedIndex, style }: Props) {
+function SettingSelector({ options, onSelect, selectedIndex, style, disabled }: Props) {
   return (
     <FormControl sx={{ ...style, width: "100%" }}>
       <CustomSelect
@@ -58,6 +60,7 @@ function SettingSelector({ options, onSelect, selectedIndex, style }: Props) {
         onChange={(event) =>
           onSelect(options.indexOf(event.target.value as string))
         }
+        disabled={disabled}
       >
         {options.map((option, index) => (
           <CustomOption key={index} value={option}>

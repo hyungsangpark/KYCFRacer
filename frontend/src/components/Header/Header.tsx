@@ -57,9 +57,10 @@ function Header() {
               </HeaderButton>
             </div>
           ) : (
-            <HeaderButton onClick={() => loginWithRedirect()}>
-              Login
-            </HeaderButton>
+            <div></div>
+            // <HeaderButton onClick={() => loginWithRedirect()}>
+            //   Login
+            // </HeaderButton>
           )}
         </Toolbar>
       </AppBar>
