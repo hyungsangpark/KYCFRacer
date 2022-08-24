@@ -1,22 +1,24 @@
-import {Server, Socket} from "socket.io";
+import { Server, Socket } from "socket.io";
 import LobbyManager from "./SocketModels/LobbyManager";
 import Player from "./SocketModels/Player";
 import {
   CompleteGameDTO,
   CreateLobbyDTO,
-  CreateLobbyResponse, ErrorResponse,
+  CreateLobbyResponse,
+  ErrorResponse,
   JoinLobbyDTO,
   PlayerProgressDTO,
   PlayersResponse,
   ReadyLobbyDTO,
-  StartGameDTO, StartGameResponse,
+  StartGameDTO,
+  StartGameResponse,
 } from "./SocketModels/SocketTypes";
 import Logger from "../util/Logger";
 import CodeBlock from "../models/CodeBlock";
 import Lobby from "./SocketModels/Lobby";
 import MatchHistory from "../models/MatchHistory";
 import mongoose from "mongoose";
-import {MatchHistoryUser} from "../DTOs/ApiTypes";
+import { MatchHistoryUser } from "../DTOs/ApiTypes";
 import User from "../models/User";
 import Avatar from "../models/Avatar";
 
@@ -47,12 +49,12 @@ function createLobby(io: Server, socket: Socket, lobbyManager: LobbyManager) {
     socket.join(lobbyID.toUpperCase());
 
     const response: CreateLobbyResponse = {
-      lobbyID
+      lobbyID,
     };
 
     io.in(lobbyID).emit("lobbyCreated", response);
-    io.in(lobbyID).emit('lobbyJoined', lobbyPlayersToResponse([host], host));
-  })
+    io.in(lobbyID).emit("lobbyJoined", lobbyPlayersToResponse([host], host));
+  });
 }
 
 /**
@@ -71,10 +73,10 @@ function joinLobby(io: Server, socket: Socket, lobbyManager: LobbyManager) {
       Logger.error("Lobby does not exist");
 
       const response: ErrorResponse = {
-        error: "Lobby does not exist"
+        error: "Lobby does not exist",
       };
 
-      socket.emit('lobbyError', response);
+      socket.emit("lobbyError", response);
 
       return;
     }
@@ -83,15 +85,20 @@ function joinLobby(io: Server, socket: Socket, lobbyManager: LobbyManager) {
       Logger.error("Lobby is full");
 
       const response: ErrorResponse = {
-        error: "Lobby is full"
+        error: "Lobby is full",
       };
 
-      socket.emit('lobbyError', response);
+      socket.emit("lobbyError", response);
 
       return;
     }
 
-    const player = new Player(socket.id, lobby.getLobbyID(), joinLobby.playerName, false);
+    const player = new Player(
+      socket.id,
+      lobby.getLobbyID(),
+      joinLobby.playerName,
+      false
+    );
 
     joinLobby.sub && player.setSub(joinLobby.sub);
 
@@ -100,8 +107,11 @@ function joinLobby(io: Server, socket: Socket, lobbyManager: LobbyManager) {
     lobbyManager.addPlayer(joinLobby.lobbyID, player);
     socket.join(lobby.getLobbyID().toUpperCase());
 
-    io.in(lobby.getLobbyID()).emit('lobbyJoined', lobbyPlayersToResponse(lobby.getPlayers(), lobby.getHost()));
-  })
+    io.in(lobby.getLobbyID()).emit(
+      "lobbyJoined",
+      lobbyPlayersToResponse(lobby.getPlayers(), lobby.getHost())
+    );
+  });
 }
 
 /**
@@ -124,8 +134,11 @@ function readyLobby(io: Server, socket: Socket, lobbyManager: LobbyManager) {
 
     player?.flipIsReady();
 
-    io.in(lobby.getLobbyID()).emit('lobbyJoined', lobbyPlayersToResponse(lobby.getPlayers(), lobby.getHost()));
-  })
+    io.in(lobby.getLobbyID()).emit(
+      "lobbyJoined",
+      lobbyPlayersToResponse(lobby.getPlayers(), lobby.getHost())
+    );
+  });
 }
 
 /**
@@ -153,9 +166,9 @@ function startGame(io: Server, socket: Socket, lobbyManager: LobbyManager) {
 
     lobby?.setStarted(true);
 
-    const {language, time} = startGameDTO.settings;
+    const { language, time } = startGameDTO.settings;
 
-    CodeBlock.find({language, time}).then(codeBlocks => {
+    CodeBlock.find({ language, time }).then((codeBlocks) => {
       const randomisedCodeBlocks = codeBlocks.sort(() => 0.5 - Math.random());
 
       if (randomisedCodeBlocks.length === 0) {
@@ -170,11 +183,11 @@ function startGame(io: Server, socket: Socket, lobbyManager: LobbyManager) {
         ...lobbyPlayersToResponse(lobby.getPlayers(), lobby.getHost()),
         code: randomisedCodeBlocks[0],
         language: language,
-      }
+      };
 
-      io.in(lobby.getLobbyID()).emit('gameStart', response);
+      io.in(lobby.getLobbyID()).emit("gameStart", response);
     });
-  })
+  });
 }
 
 /**
@@ -184,7 +197,11 @@ function startGame(io: Server, socket: Socket, lobbyManager: LobbyManager) {
  * @param socket
  * @param lobbyManager
  */
-function receivePlayerProgress(io: Server, socket: Socket, lobbyManager: LobbyManager) {
+function receivePlayerProgress(
+  io: Server,
+  socket: Socket,
+  lobbyManager: LobbyManager
+) {
   socket.on("updatePlayerProgress", (playerProgressDTO: PlayerProgressDTO) => {
     const lobby = lobbyManager.getLobby(playerProgressDTO.lobbyID);
 
@@ -205,8 +222,11 @@ function receivePlayerProgress(io: Server, socket: Socket, lobbyManager: LobbyMa
       timeLeftInSeconds: playerProgressDTO.timeLeftInSeconds,
     });
 
-    io.in(lobby.getLobbyID()).emit('playerProgressUpdate', lobbyPlayersToResponse(lobby.getPlayers(), lobby.getHost()));
-  })
+    io.in(lobby.getLobbyID()).emit(
+      "playerProgressUpdate",
+      lobbyPlayersToResponse(lobby.getPlayers(), lobby.getHost())
+    );
+  });
 }
 
 /**
@@ -231,7 +251,7 @@ function gameComplete(io: Server, socket: Socket, lobbyManager: LobbyManager) {
 
     lobby.orderPlayersByRating();
     await completeGame(lobby, io, lobbyManager);
-  })
+  });
 }
 
 /**
@@ -275,8 +295,11 @@ function leaveLobby(io: Server, socket: Socket, lobbyManager: LobbyManager) {
       await completeGame(lobby, io, lobbyManager);
     }
 
-    io.in(lobby.getLobbyID()).emit('lobbyJoined', lobbyPlayersToResponse(lobby.getPlayers(), lobby.getHost()));
-  }
+    io.in(lobby.getLobbyID()).emit(
+      "lobbyJoined",
+      lobbyPlayersToResponse(lobby.getPlayers(), lobby.getHost())
+    );
+  };
 
   socket.on("leaveLobby", disconnectSocket);
   socket.on("disconnect", disconnectSocket);
@@ -308,14 +331,14 @@ const assignProfilePicture = async (player: Player) => {
   }
 
   player.setProfilePicture(randomAvatar.url);
-}
+};
 
 /**
  * Helper method to try get the profile picture of a registered user.
  * @param sub
  */
 const getProfilePicture = async (sub: string) => {
-  const user = await User.findById(sub.split('|')[1]);
+  const user = await User.findById(sub.split("|")[1]);
 
   if (user === undefined || user == null) {
     Logger.error("User does not exist");
@@ -323,7 +346,7 @@ const getProfilePicture = async (sub: string) => {
   }
 
   return user.profilePicture;
-}
+};
 
 /**
  * Helper method which completes the game by closing the lobby,
@@ -333,43 +356,49 @@ const getProfilePicture = async (sub: string) => {
  * @param io
  * @param lobbyManager
  */
-const completeGame = async (lobby: Lobby, io: Server, lobbyManager: LobbyManager) => {
+const completeGame = async (
+  lobby: Lobby,
+  io: Server,
+  lobbyManager: LobbyManager
+) => {
   const players = lobby.getPlayers();
 
-  if (players.every(player => player.isFinished()) && lobby.getStarted()) {
-
+  if (players.every((player) => player.isFinished()) && lobby.getStarted()) {
     const users: MatchHistoryUser[] = [];
 
     for (const player of players) {
       users.push({
         username: player.getPlayerName(),
         profilePicture: player.getProfilePicture(),
-        userId: player.getSub() === "" ? "Unregistered" : player.getSub().split('|')[1],
+        userId:
+          player.getSub() === ""
+            ? "Unregistered"
+            : player.getSub().split("|")[1],
         stats: {
           avgCPM: player.getStats().CPM,
           avgAccuracy: player.getStats().Accuracy,
           avgErrors: player.getStats().Errors,
-        }
+        },
       });
     }
 
     const newMatchHistoryItem = new MatchHistory({
-      _id : new mongoose.Types.ObjectId(),
+      _id: new mongoose.Types.ObjectId(),
       users: users,
       codeBlock: {
-        _id: lobby.getCodeBlockId()
-      }
+        _id: lobby.getCodeBlockId(),
+      },
     });
 
     let atLeastOnePlayerFound = false;
 
-    for (let i = 0; i < players.length; i++){
+    for (let i = 0; i < players.length; i++) {
       const player = players[i];
       if (player.getSub() === "") {
         continue;
       }
 
-      const user = await User.findById(player.getSub().split('|')[1]);
+      const user = await User.findById(player.getSub().split("|")[1]);
 
       if (user) {
         atLeastOnePlayerFound = true;
@@ -377,9 +406,11 @@ const completeGame = async (lobby: Lobby, io: Server, lobbyManager: LobbyManager
         user.avgStats = {
           ...user.avgStats,
           avgCPM: (user.avgStats.avgCPM + player.getStats().CPM) / 2,
-          avgAccuracy: (user.avgStats.avgAccuracy + player.getStats().Accuracy) / 2,
+          avgAccuracy:
+            (user.avgStats.avgAccuracy + player.getStats().Accuracy) / 2,
           avgErrors: (user.avgStats.avgErrors + player.getStats().Errors) / 2,
-          victories: i > 0 ? user.avgStats.victories : user.avgStats.victories + 1
+          victories:
+            i > 0 ? user.avgStats.victories : user.avgStats.victories + 1,
         };
 
         user.matchHistory.push(newMatchHistoryItem._id);
@@ -390,21 +421,27 @@ const completeGame = async (lobby: Lobby, io: Server, lobbyManager: LobbyManager
 
     atLeastOnePlayerFound && newMatchHistoryItem.save();
 
-    io.in(lobby.getLobbyID()).emit('gameComplete', lobbyPlayersToResponse(lobby.getPlayers(), lobby.getHost()));
+    io.in(lobby.getLobbyID()).emit(
+      "gameComplete",
+      lobbyPlayersToResponse(lobby.getPlayers(), lobby.getHost())
+    );
     lobby?.setStarted(false);
 
     lobbyManager.closeLobby(lobby.getLobbyID());
   }
-}
+};
 
 /**
  * Helper method to convert a list of players to a list of player responses.
  * @param players
  * @param host
  */
-const lobbyPlayersToResponse = (players: Player[], host: Player | null): PlayersResponse => {
+const lobbyPlayersToResponse = (
+  players: Player[],
+  host: Player | null
+): PlayersResponse => {
   return {
-    players: players.map(player => {
+    players: players.map((player) => {
       return {
         profilePicture: player.getProfilePicture(),
         playerName: player.getPlayerName(),
@@ -413,13 +450,17 @@ const lobbyPlayersToResponse = (players: Player[], host: Player | null): Players
         isHost: host !== null && host.getSocketID() === player.getSocketID(),
         playerStats: {
           ...player.getStats(),
-        }
-      }
-    })
+        },
+      };
+    }),
   };
 };
 
-export default function (io: Server, socket: Socket, lobbyManager: LobbyManager) {
+export default function (
+  io: Server,
+  socket: Socket,
+  lobbyManager: LobbyManager
+) {
   createLobby(io, socket, lobbyManager);
   joinLobby(io, socket, lobbyManager);
   leaveLobby(io, socket, lobbyManager);

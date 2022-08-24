@@ -1,3 +1,3 @@
-import CodeInput from './CodeInput';
+import CodeInput from "./CodeInput";
 
 export default CodeInput;

@@ -1,4 +1,4 @@
-import {PlayerStats} from "./SocketTypes";
+import { PlayerStats } from "./SocketTypes";
 
 /**
  * This class represents the player socket such as their live stats.
@@ -20,7 +20,12 @@ class Player {
   private wrongKeyCount?: number;
   private timeLeftInSeconds?: number;
 
-  constructor(socketID: string, roomId: string, playerName: string, isHost: boolean) {
+  constructor(
+    socketID: string,
+    roomId: string,
+    playerName: string,
+    isHost: boolean
+  ) {
     this.socketID = socketID;
     this.roomId = roomId;
     this.playerName = playerName;
@@ -29,7 +34,7 @@ class Player {
     this.finished = false;
     this.sub = "";
     this.profilePicture = "";
-    
+
     this.CPM = 0;
     this.accuracy = 0;
     this.errors = 0;
@@ -71,8 +76,8 @@ class Player {
       Progress: this.progress,
       correctKeyCount: this.correctKeyCount,
       wrongKeyCount: this.wrongKeyCount,
-      timeLeftInSeconds: this.timeLeftInSeconds
-    }
+      timeLeftInSeconds: this.timeLeftInSeconds,
+    };
   }
 
   public updateStats(newStats: PlayerStats) {

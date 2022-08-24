@@ -1,3 +1,3 @@
-import LobbyPlayerContainer from './LobbyPlayerContainer';
+import LobbyPlayerContainer from "./LobbyPlayerContainer";
 
 export default LobbyPlayerContainer;

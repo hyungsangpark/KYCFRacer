@@ -38,9 +38,7 @@ function HomePage() {
         </div>
       </MainContentsContainer>
       <div className={classes.ButtonContainer}>
-        <CustomButton onClick={onPlaySoloClick}>
-          Singleplayer 하기
-        </CustomButton>
+        <CustomButton onClick={onPlaySoloClick}>Singleplayer 하기</CustomButton>
         {/*<CustomButton onClick={onPlayMultiplayerClick}>*/}
         {/*  Multiplayer 하기*/}
         {/*</CustomButton>*/}

@@ -1,3 +1,3 @@
-import SettingSelector from './SettingSelector';
+import SettingSelector from "./SettingSelector";
 
 export default SettingSelector;

@@ -31,8 +31,8 @@ const ScoreSpecification = styled(Typography)({
  */
 
 function GameEndSoloContainer({ playerStats, codeBlock, isViewCode }: Props) {
-
-  const finalScore = (playerStats.cpm - playerStats.error) * playerStats.accuracy / 100;
+  const finalScore =
+    ((playerStats.cpm - playerStats.error) * playerStats.accuracy) / 100;
 
   return (
     <div className={classes.MainContainer}>
@@ -49,18 +49,17 @@ function GameEndSoloContainer({ playerStats, codeBlock, isViewCode }: Props) {
             CPM: <span style={{ fontWeight: "bold" }}>{playerStats.cpm}</span>
           </ScoreSpecification>
           <ScoreSpecification>
-            Accuracy: <span style={{ fontWeight: "bold" }}>{playerStats.accuracy}</span>
+            Accuracy:{" "}
+            <span style={{ fontWeight: "bold" }}>{playerStats.accuracy}</span>
           </ScoreSpecification>
           <ScoreSpecification>
-            Errors: <span style={{ fontWeight: "bold" }}>{playerStats.error}</span>
+            Errors:{" "}
+            <span style={{ fontWeight: "bold" }}>{playerStats.error}</span>
           </ScoreSpecification>
         </Box>
       </div>
-      <Divider sx={{ width: "18rem", margin: "2rem 0 1rem 0", }} />
-      <Typography
-        variant={"h5"}
-        fontWeight={"lighter"}
-      >
+      <Divider sx={{ width: "18rem", margin: "2rem 0 1rem 0" }} />
+      <Typography variant={"h5"} fontWeight={"lighter"}>
         *Final score를 부스 담당자에게 보여주세요!*
       </Typography>
       <Divider sx={{ width: "18rem", margin: "1rem 0 2rem 0" }} />

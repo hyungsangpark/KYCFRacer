@@ -3,7 +3,6 @@ import classes from "./ViewCodeContainer.module.css";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { a11yLight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
-
 interface Props {
   code: string;
   language: string;
@@ -26,7 +25,7 @@ function ViewCodeContainer({ code, language }: Props) {
           fontSize: "30px",
           borderRadius: "10px",
           border: "2px solid #00000020",
-          margin: 0
+          margin: 0,
         }}
       >
         {code}

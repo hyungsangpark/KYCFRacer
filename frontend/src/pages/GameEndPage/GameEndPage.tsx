@@ -80,8 +80,7 @@ function GameEndPage() {
           });
         }
       }
-    }
-    else {
+    } else {
       navigate("/");
     }
   }, [location]);

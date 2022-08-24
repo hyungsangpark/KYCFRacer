@@ -52,7 +52,13 @@ interface Props {
  * @param disabled boolean if this component is disabled
  * @constructor
  */
-function SettingSelector({ options, onSelect, selectedIndex, style, disabled }: Props) {
+function SettingSelector({
+  options,
+  onSelect,
+  selectedIndex,
+  style,
+  disabled,
+}: Props) {
   return (
     <FormControl sx={{ ...style, width: "100%" }}>
       <CustomSelect

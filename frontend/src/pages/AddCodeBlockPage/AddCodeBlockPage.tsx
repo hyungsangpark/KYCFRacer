@@ -8,9 +8,10 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
-  Select, Snackbar,
+  Select,
+  Snackbar,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import { createCodeBlock } from "../../api/Api";
 
@@ -41,7 +42,10 @@ function AddCodeBlockPage() {
     console.log("newCodeBlock", newCodeBlock);
   };
 
-  const handleSuccessClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+  const handleSuccessClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
     if (reason === "clickaway") {
       return;
     }
@@ -69,7 +73,9 @@ function AddCodeBlockPage() {
         width={"40rem"}
         marginY={2}
       >
-        <Typography variant="h3" paddingRight={10}>Time</Typography>
+        <Typography variant="h3" paddingRight={10}>
+          Time
+        </Typography>
         <FormControl>
           <InputLabel id="time-select-label">Time</InputLabel>
           <Select
@@ -81,7 +87,10 @@ function AddCodeBlockPage() {
             onChange={(e) => setTime(String(e.target.value))}
           >
             {times.map((time, index) => (
-              <MenuItem key={`time_item_${index}`} value={time}>{time}</MenuItem>))}
+              <MenuItem key={`time_item_${index}`} value={time}>
+                {time}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Box>
@@ -94,7 +103,9 @@ function AddCodeBlockPage() {
         width={"40rem"}
         marginY={2}
       >
-        <Typography variant="h3" paddingRight={10}>Language</Typography>
+        <Typography variant="h3" paddingRight={10}>
+          Language
+        </Typography>
         <FormControl>
           <InputLabel id="language-select-label">Language</InputLabel>
           <Select
@@ -106,7 +117,10 @@ function AddCodeBlockPage() {
             onChange={(e) => setLanguage(String(e.target.value))}
           >
             {languages.map((language, index) => (
-              <MenuItem key={`language_item_${index}`} value={language}>{language.toUpperCase()}</MenuItem>))}
+              <MenuItem key={`language_item_${index}`} value={language}>
+                {language.toUpperCase()}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Box>
@@ -119,7 +133,9 @@ function AddCodeBlockPage() {
         width={"40rem"}
         marginY={2}
       >
-        <Typography variant="h3" paddingRight={10}>Text</Typography>
+        <Typography variant="h3" paddingRight={10}>
+          Text
+        </Typography>
         <TextField
           id={"text-field"}
           label={"Text"}
@@ -132,10 +148,7 @@ function AddCodeBlockPage() {
         />
       </Box>
 
-      <Button
-        variant={"contained"}
-        onClick={handleSubmit}
-      >
+      <Button variant={"contained"} onClick={handleSubmit}>
         Submit
       </Button>
 
@@ -151,7 +164,9 @@ function AddCodeBlockPage() {
         autoHideDuration={3000}
         onClose={handleSuccessClose}
       >
-        <Alert onClose={handleSuccessClose} severity="success" elevation={2}>Creation Success!</Alert>
+        <Alert onClose={handleSuccessClose} severity="success" elevation={2}>
+          Creation Success!
+        </Alert>
       </Snackbar>
     </Box>
   );

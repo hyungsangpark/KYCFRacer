@@ -1,26 +1,24 @@
-import React from 'react';
-import classes from './PlayerCardStats.module.css';
-import {styled} from "@mui/material/styles";
-import {Typography} from "@mui/material";
+import React from "react";
+import classes from "./PlayerCardStats.module.css";
+import { styled } from "@mui/material/styles";
+import { Typography } from "@mui/material";
 
-const MainStatTypography = styled(Typography)(({theme}) => ({
-  fontWeight: 'bold',
+const MainStatTypography = styled(Typography)(({ theme }) => ({
+  fontWeight: "bold",
   fontSize: "1.75rem",
   marginRight: 3,
-
 }));
 
-const SubStatTypography = styled(Typography)(({theme}) => ({
+const SubStatTypography = styled(Typography)(({ theme }) => ({
   fontSize: "1.25rem",
   marginRight: 12,
-  fontWeight: 'lighter',
+  fontWeight: "lighter",
 }));
 
-
 interface Props {
-  CPM: number,
-  Accuracy: number,
-  Errors: number
+  CPM: number;
+  Accuracy: number;
+  Errors: number;
 }
 
 /**
@@ -31,8 +29,7 @@ interface Props {
  * @param Errors - Number of errors made by the player
  * @constructor
  */
-function PlayerCardStats({CPM, Accuracy, Errors}: Props) {
-
+function PlayerCardStats({ CPM, Accuracy, Errors }: Props) {
   return (
     <div className={classes.MainContainer}>
       <MainStatTypography>{CPM}</MainStatTypography>
@@ -42,7 +39,7 @@ function PlayerCardStats({CPM, Accuracy, Errors}: Props) {
       <MainStatTypography>{Errors}</MainStatTypography>
       <SubStatTypography>ERR</SubStatTypography>
     </div>
-  )
+  );
 }
 
 export default PlayerCardStats;

@@ -265,7 +265,8 @@ function CodeInput({
           }}
         >
           {!started ? "Game will start soon..." : "Click to focus"}
-        </Typography>)}
+        </Typography>
+      )}
 
       <div style={{ textAlign: "center", height: 15, marginBottom: 15 }}>
         {showEnterMessage && <Typography>Press Enter to continue</Typography>}

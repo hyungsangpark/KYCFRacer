@@ -23,8 +23,10 @@ function ScoreDisplayItem({
   nextLineLabel,
   size = "large",
 }: Props) {
-  const scoreSize = size === "small" ? "2rem" : size === "large" ? "5rem" : "3rem";
-  const labelSize = size === "small" ? "0.75rem" : size === "large" ? "2rem" : "1.12rem";
+  const scoreSize =
+    size === "small" ? "2rem" : size === "large" ? "5rem" : "3rem";
+  const labelSize =
+    size === "small" ? "0.75rem" : size === "large" ? "2rem" : "1.12rem";
 
   return (
     <div

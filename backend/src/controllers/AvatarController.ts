@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from 'express';
-import mongoose from 'mongoose';
+import { NextFunction, Request, Response } from "express";
+import mongoose from "mongoose";
 import Avatar from "../models/Avatar";
-import {GetUserIdFromExpressUser} from "../util/Util";
+import { GetUserIdFromExpressUser } from "../util/Util";
 import User from "../models/User";
 
 /**
@@ -16,16 +16,17 @@ import User from "../models/User";
  * @param next
  */
 const createAvatar = (req: Request, res: Response, next: NextFunction) => {
-    const { url } = req.body;
+  const { url } = req.body;
 
-    const newAvatar = new Avatar({
-        _id : new mongoose.Types.ObjectId(),
-        url
-    });
+  const newAvatar = new Avatar({
+    _id: new mongoose.Types.ObjectId(),
+    url,
+  });
 
-    return newAvatar.save()
-        .then(() => res.status(201).json({ newAvatar }))
-        .catch((error: Error) => res.status(500).json({ error }));
+  return newAvatar
+    .save()
+    .then(() => res.status(201).json({ newAvatar }))
+    .catch((error: Error) => res.status(500).json({ error }));
 };
 
 /**
@@ -34,14 +35,17 @@ const createAvatar = (req: Request, res: Response, next: NextFunction) => {
  * @param res
  * @param next
  */
-const getRandomAvatar = async (req: Request, res: Response, next: NextFunction) => {
+const getRandomAvatar = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const count = await Avatar.count();
+  const rand = Math.floor(Math.random() * count);
 
-    const count = await Avatar.count();
-    const rand = Math.floor(Math.random() * count);
+  const randomAvatar = await Avatar.findOne().skip(rand);
 
-    const randomAvatar = await Avatar.findOne().skip(rand);
-
-    return res.status(200).json({ avatar: randomAvatar });
+  return res.status(200).json({ avatar: randomAvatar });
 };
 
 /**
@@ -50,10 +54,14 @@ const getRandomAvatar = async (req: Request, res: Response, next: NextFunction) 
  * @param res
  * @param next
  */
-const getAllAvatars = async (req: Request, res: Response, next: NextFunction) => {
-    const avatars = await Avatar.find();
+const getAllAvatars = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const avatars = await Avatar.find();
 
-    return res.status(200).json({ avatars });
+  return res.status(200).json({ avatars });
 };
 
 /**
@@ -63,40 +71,44 @@ const getAllAvatars = async (req: Request, res: Response, next: NextFunction) =>
  * @param res
  * @param next
  */
-const setAvatarForUserToken = async (req: Request, res: Response, next: NextFunction) => {
-    const sub = GetUserIdFromExpressUser(req.user);
+const setAvatarForUserToken = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const sub = GetUserIdFromExpressUser(req.user);
 
-    if (sub.length === 0) {
-        res.status(401).send('Unauthorized');
-        return;
-    }
+  if (sub.length === 0) {
+    res.status(401).send("Unauthorized");
+    return;
+  }
 
-    const userFromDB = await User.findById(sub);
+  const userFromDB = await User.findById(sub);
 
-    if (userFromDB === null) {
-        res.status(404).send('User not found');
-        return;
-    }
+  if (userFromDB === null) {
+    res.status(404).send("User not found");
+    return;
+  }
 
-    const { avatarId } = req.body;
+  const { avatarId } = req.body;
 
-    const avatar = await Avatar.findById(avatarId);
+  const avatar = await Avatar.findById(avatarId);
 
-    if (avatar === null) {
-        res.status(404).send('Avatar not found');
-        return;
-    }
+  if (avatar === null) {
+    res.status(404).send("Avatar not found");
+    return;
+  }
 
-    userFromDB.profilePicture = avatar.url;
+  userFromDB.profilePicture = avatar.url;
 
-    await userFromDB.save();
+  await userFromDB.save();
 
-    return res.status(200).json(userFromDB.profilePicture);
+  return res.status(200).json(userFromDB.profilePicture);
 };
 
 export default {
-    createAvatar,
-    getRandomAvatar,
-    getAllAvatars,
-    setAvatarForUserToken
-}
+  createAvatar,
+  getRandomAvatar,
+  getAllAvatars,
+  setAvatarForUserToken,
+};

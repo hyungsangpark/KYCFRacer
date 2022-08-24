@@ -1,3 +1,3 @@
-import JoinLobbyContainer from './JoinLobbyContainer';
+import JoinLobbyContainer from "./JoinLobbyContainer";
 
 export default JoinLobbyContainer;

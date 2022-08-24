@@ -25,8 +25,8 @@ function App() {
       clientId={clientId}
       redirectUri={window.location.origin}
       audience={process.env.REACT_APP_AUTH0_AUDIENCE}
-      scope='openid email profile'
-      responseType='code'
+      scope="openid email profile"
+      responseType="code"
     >
       <SocketContextProvider>
         <ThemeProvider theme={theme}>

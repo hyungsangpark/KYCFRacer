@@ -1,3 +1,3 @@
-import MultiplayerGamePlayerContainer from './MultiplayerGamePlayerContainer';
+import MultiplayerGamePlayerContainer from "./MultiplayerGamePlayerContainer";
 
 export default MultiplayerGamePlayerContainer;

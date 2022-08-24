@@ -1,19 +1,16 @@
-import mongoose, {Document, Schema} from 'mongoose';
+import mongoose, { Document, Schema } from "mongoose";
 
 /**
  * Avatar model containing the url of the img.
  */
 export interface IAvatar {
-    url: string;
+  url: string;
 }
 
-export interface IAvatarModel extends IAvatar, Document {
-}
+export interface IAvatarModel extends IAvatar, Document {}
 
-const AvatarSchema: Schema = new Schema(
-    {
-        url: {type: String, required: true},
-    }
-);
+const AvatarSchema: Schema = new Schema({
+  url: { type: String, required: true },
+});
 
-export default mongoose.model<IAvatarModel>('Avatar', AvatarSchema);
+export default mongoose.model<IAvatarModel>("Avatar", AvatarSchema);

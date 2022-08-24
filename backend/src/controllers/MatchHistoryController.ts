@@ -1,8 +1,8 @@
-import { NextFunction, Request, Response } from 'express';
-import {GetUserIdFromExpressUser} from "../util/Util";
+import { NextFunction, Request, Response } from "express";
+import { GetUserIdFromExpressUser } from "../util/Util";
 import User from "../models/User";
 import MatchHistory from "../models/MatchHistory";
-import {MatchHistoryUser} from "../DTOs/ApiTypes";
+import { MatchHistoryUser } from "../DTOs/ApiTypes";
 import mongoose from "mongoose";
 
 /**
@@ -18,58 +18,63 @@ import mongoose from "mongoose";
  * @param res
  * @param next
  */
-const createMatchHistory = async (req: Request, res: Response, next: NextFunction) => {
-    const sub = GetUserIdFromExpressUser(req.user);
+const createMatchHistory = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const sub = GetUserIdFromExpressUser(req.user);
 
-    if (sub.length === 0) {
-        res.status(401).send('Unauthorized');
-        return;
-    }
+  if (sub.length === 0) {
+    res.status(401).send("Unauthorized");
+    return;
+  }
 
-    const userFromDB = await User.findById(sub);
+  const userFromDB = await User.findById(sub);
 
-    if (userFromDB === null) {
-        res.status(404).send('User not found');
-        return;
-    }
+  if (userFromDB === null) {
+    res.status(404).send("User not found");
+    return;
+  }
 
-    const {avgCPM, avgAccuracy, avgErrors, codeBlockId} = req.body;
+  const { avgCPM, avgAccuracy, avgErrors, codeBlockId } = req.body;
 
-    const userAsMatchHistoryUser: MatchHistoryUser = {
-        userId: userFromDB.id,
-        username: userFromDB.username,
-        profilePicture: userFromDB.profilePicture,
-        stats: {
-            avgCPM,
-            avgAccuracy,
-            avgErrors
-        }
-    };
+  const userAsMatchHistoryUser: MatchHistoryUser = {
+    userId: userFromDB.id,
+    username: userFromDB.username,
+    profilePicture: userFromDB.profilePicture,
+    stats: {
+      avgCPM,
+      avgAccuracy,
+      avgErrors,
+    },
+  };
 
-    const newMatchHistoryItem = new MatchHistory({
-        _id : new mongoose.Types.ObjectId(),
-        users: [userAsMatchHistoryUser],
-        codeBlock: {
-            _id: codeBlockId
-        }
-      })
+  const newMatchHistoryItem = new MatchHistory({
+    _id: new mongoose.Types.ObjectId(),
+    users: [userAsMatchHistoryUser],
+    codeBlock: {
+      _id: codeBlockId,
+    },
+  });
 
-    userFromDB.matchHistory.push(newMatchHistoryItem._id);
+  userFromDB.matchHistory.push(newMatchHistoryItem._id);
 
-    userFromDB.avgStats = {
-        ...userFromDB.avgStats,
-        avgCPM: (userFromDB.avgStats.avgCPM + avgCPM) / 2,
-        avgAccuracy: (userFromDB.avgStats.avgAccuracy + avgAccuracy) / 2,
-        avgErrors: (userFromDB.avgStats.avgErrors + avgErrors) / 2,
-    };
+  userFromDB.avgStats = {
+    ...userFromDB.avgStats,
+    avgCPM: (userFromDB.avgStats.avgCPM + avgCPM) / 2,
+    avgAccuracy: (userFromDB.avgStats.avgAccuracy + avgAccuracy) / 2,
+    avgErrors: (userFromDB.avgStats.avgErrors + avgErrors) / 2,
+  };
 
-    await userFromDB.save();
+  await userFromDB.save();
 
-    return newMatchHistoryItem.save()
-        .then(() => res.status(201).json({ newMatchHistoryItem }))
-        .catch((error: Error) => res.status(500).json({ error }));
+  return newMatchHistoryItem
+    .save()
+    .then(() => res.status(201).json({ newMatchHistoryItem }))
+    .catch((error: Error) => res.status(500).json({ error }));
 };
 
 export default {
-    createMatchHistory,
+  createMatchHistory,
 };

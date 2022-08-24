@@ -1,5 +1,5 @@
 import { MultiplayerSettings } from "./GameTypes";
-import {CodeBlock} from "./ApiTypes";
+import { CodeBlock } from "./ApiTypes";
 
 /**
  * This file contains the types for the socket events
@@ -31,7 +31,7 @@ export type SocketContextType = {
 export type CreateLobbyDTO = {
   playerName: string;
   sub?: string;
-}
+};
 
 export type CreateLobbyResponse = {
   lobbyID: string;
@@ -41,11 +41,11 @@ export type JoinLobbyDTO = {
   playerName: string;
   lobbyID: string;
   sub?: string;
-}
+};
 
 export type ErrorResponse = {
   error: string;
-}
+};
 
 export type CompleteGameDTO = {
   lobbyID: string;
@@ -68,7 +68,7 @@ export type Player = {
   isHost: boolean;
   isMe?: boolean;
   profilePicture: string;
-}
+};
 
 export type ReadyLobbyDTO = {
   lobbyID: string;
@@ -101,6 +101,6 @@ export type StartGameDTO = {
 };
 
 export type CodeBlockWIthId = {
-  id?: string,
-  codeBlock: string
-}
+  id?: string;
+  codeBlock: string;
+};

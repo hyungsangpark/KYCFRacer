@@ -17,7 +17,7 @@ describe("PageContainer", () => {
         <div>Hello</div>
       </PageContainer>
     );
-    
+
     expect(baseElement).toHaveTextContent("Hello");
   });
 

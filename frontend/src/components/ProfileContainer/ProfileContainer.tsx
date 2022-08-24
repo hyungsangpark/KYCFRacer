@@ -28,7 +28,13 @@ interface Props {
  */
 function ProfileContainer({ profile, imagesArray, setProfileImage }: Props) {
   return (
-    <MainContentsContainer style={{ flexDirection: "row", alignItems: "flex-start", justifyContent: "center" }}>
+    <MainContentsContainer
+      style={{
+        flexDirection: "row",
+        alignItems: "flex-start",
+        justifyContent: "center",
+      }}
+    >
       <div className={styles.LeftContainer}>
         <Profile
           setProfileImage={setProfileImage}

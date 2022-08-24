@@ -13,7 +13,7 @@ describe("HomePage", () => {
     const linkElement = screen.getByText(
       /Learn Programming Through Competition/i
     );
-    
+
     expect(linkElement).toBeInTheDocument();
   });
 });

@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response } from "express";
 import User from "../models/User";
-import {UserProfile} from "../DTOs/ApiTypes";
-import {GetUserIdFromExpressUser} from "../util/Util";
+import { UserProfile } from "../DTOs/ApiTypes";
+import { GetUserIdFromExpressUser } from "../util/Util";
 
 /**
  * This file contains controller methods for the User model.
@@ -18,14 +18,14 @@ const getUser = async (req: Request, res: Response, next: NextFunction) => {
   const sub = GetUserIdFromExpressUser(req.user);
 
   if (sub.length === 0) {
-    res.status(401).send('Unauthorized');
+    res.status(401).send("Unauthorized");
     return;
   }
 
-  const userFromDB = await User.findById(sub).populate('matchHistory');
+  const userFromDB = await User.findById(sub).populate("matchHistory");
 
   if (userFromDB === null) {
-    res.status(404).send('User not found');
+    res.status(404).send("User not found");
     return;
   }
 
@@ -34,7 +34,7 @@ const getUser = async (req: Request, res: Response, next: NextFunction) => {
     profilePicture: userFromDB.profilePicture,
     avgStats: userFromDB.avgStats,
     matchHistory: userFromDB.matchHistory,
-  }
+  };
 
   res.status(200).send(response);
 };

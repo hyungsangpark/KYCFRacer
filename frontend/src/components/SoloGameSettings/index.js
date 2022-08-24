@@ -1,3 +1,3 @@
-import SoloGameSettings from './SoloGameSettings';
+import SoloGameSettings from "./SoloGameSettings";
 
 export default SoloGameSettings;

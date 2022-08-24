@@ -42,7 +42,9 @@ class Lobby {
   }
 
   public removePlayer(player: Player) {
-    this.players = this.players.filter(p => p.getSocketID() !== player.getSocketID());
+    this.players = this.players.filter(
+      (p) => p.getSocketID() !== player.getSocketID()
+    );
   }
 
   public generateRandomID(): string {
@@ -66,7 +68,7 @@ class Lobby {
   }
 
   public getPlayerBySocketID(socketID: string): Player | null {
-    return this.players.find(p => p.getSocketID() === socketID) || null;
+    return this.players.find((p) => p.getSocketID() === socketID) || null;
   }
 
   public getPlayers(): Player[] {
@@ -76,9 +78,15 @@ class Lobby {
   public orderPlayersByRating(): void {
     // sort this.players first by their player.getStats().accuracy * this.codeBlockLength and then by their player.getStats().timeLeftInSeconds
     this.players.sort((a, b) => {
-      if (a.getStats().Accuracy * this.codeBlockLength > b.getStats().Accuracy * this.codeBlockLength) {
+      if (
+        a.getStats().Accuracy * this.codeBlockLength >
+        b.getStats().Accuracy * this.codeBlockLength
+      ) {
         return -1;
-      } else if (a.getStats().Accuracy * this.codeBlockLength < b.getStats().Accuracy * this.codeBlockLength) {
+      } else if (
+        a.getStats().Accuracy * this.codeBlockLength <
+        b.getStats().Accuracy * this.codeBlockLength
+      ) {
         return 1;
       } else {
         const aTime = a.getStats().timeLeftInSeconds;
@@ -86,8 +94,7 @@ class Lobby {
 
         if (aTime === undefined || bTime === undefined) {
           return 0;
-        }
-        else if (aTime > bTime) {
+        } else if (aTime > bTime) {
           return -1;
         } else if (aTime < bTime) {
           return 1;

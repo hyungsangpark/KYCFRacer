@@ -1,6 +1,8 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
-import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import { styled } from "@mui/material/styles";
+import LinearProgress, {
+  linearProgressClasses,
+} from "@mui/material/LinearProgress";
 
 interface Props {
   progress: number;
@@ -26,7 +28,11 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
  */
 function ProgressBar({ progress, style }: Props) {
   return (
-    <BorderLinearProgress style={{ ...style, width: "100%" }} variant="determinate" value={progress}/>
+    <BorderLinearProgress
+      style={{ ...style, width: "100%" }}
+      variant="determinate"
+      value={progress}
+    />
   );
 }
 

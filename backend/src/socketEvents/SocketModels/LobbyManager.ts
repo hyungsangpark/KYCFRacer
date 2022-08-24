@@ -56,14 +56,16 @@ class LobbyManager {
     }
   }
 
-  public getLobbyByPlayerSocketID(playerSocketID: string): {lobby: Lobby, player: Player} | undefined {
+  public getLobbyByPlayerSocketID(
+    playerSocketID: string
+  ): { lobby: Lobby; player: Player } | undefined {
     for (const lobby of this.lobbies.values()) {
       const player = lobby.getPlayerBySocketID(playerSocketID);
 
       if (player) {
         return {
           lobby,
-          player
+          player,
         };
       }
     }

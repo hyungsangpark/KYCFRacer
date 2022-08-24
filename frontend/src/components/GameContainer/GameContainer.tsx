@@ -92,15 +92,15 @@ function GameContainer({
 
       setProgress(progress);
       updateStats &&
-      updateStats({
-        CPM: getCPM(),
-        Accuracy: getAccuracy(),
-        Errors: wrongKeyCount,
-        Progress: progress,
-        correctKeyCount,
-        wrongKeyCount,
-        timeLeftInSeconds: minutes * 60 + seconds,
-      });
+        updateStats({
+          CPM: getCPM(),
+          Accuracy: getAccuracy(),
+          Errors: wrongKeyCount,
+          Progress: progress,
+          correctKeyCount,
+          wrongKeyCount,
+          timeLeftInSeconds: minutes * 60 + seconds,
+        });
 
       onGameOver(getCPM(), getAccuracy(), wrongKeyCount);
     }
@@ -156,15 +156,15 @@ function GameContainer({
         setProgress={(num) => {
           setProgress(num);
           updateStats &&
-          updateStats({
-            CPM: getCPM(),
-            Accuracy: getAccuracy(),
-            Errors: wrongKeyCount,
-            Progress: num,
-            correctKeyCount,
-            wrongKeyCount,
-            timeLeftInSeconds: minutes * 60 + seconds,
-          });
+            updateStats({
+              CPM: getCPM(),
+              Accuracy: getAccuracy(),
+              Errors: wrongKeyCount,
+              Progress: num,
+              correctKeyCount,
+              wrongKeyCount,
+              timeLeftInSeconds: minutes * 60 + seconds,
+            });
         }}
         code={code}
         onGameOver={() => {

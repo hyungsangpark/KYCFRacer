@@ -1,3 +1,3 @@
-import MultiplayerGameSettings from './MultiplayerGameSettings';
+import MultiplayerGameSettings from "./MultiplayerGameSettings";
 
 export default MultiplayerGameSettings;

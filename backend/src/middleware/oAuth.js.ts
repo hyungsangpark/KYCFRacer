@@ -1,6 +1,6 @@
 import jwt from "express-jwt";
 import jwks from "jwks-rsa";
-import { config } from '../config/config';
+import { config } from "../config/config";
 
 /**
  * Useful JWT debugger https://jwt.io/#debugger-io for viewing the contents of a valid JWT token
@@ -15,11 +15,11 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: config.auth.jwt
+    jwksUri: config.auth.jwt,
   }),
   audience: config.auth.audience,
   issuer: config.auth.issuer,
-  algorithms: ['RS256'],
+  algorithms: ["RS256"],
 });
 
-export {checkJwt};
+export { checkJwt };

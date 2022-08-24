@@ -1,28 +1,28 @@
 .correct {
-    opacity: 1;
+  opacity: 1;
 }
 
 .incorrect {
-    background-color: #ff5252;
+  background-color: #ff5252;
 }
 
 .current {
-    border-left: 1px solid;
-    border-color: rgb(0, 0, 0, 1);
-    box-sizing: border-box;
-    animation-name: currentAnimation;
-    animation-iteration-count: infinite;
-    animation-duration: 1s;
+  border-left: 1px solid;
+  border-color: rgb(0, 0, 0, 1);
+  box-sizing: border-box;
+  animation-name: currentAnimation;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
 }
 
 .codeParent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes currentAnimation {
-    50% {
-        border-color: rgb(0, 0, 0, 0);
-    }
+  50% {
+    border-color: rgb(0, 0, 0, 0);
+  }
 }

@@ -33,20 +33,19 @@ function LobbyPlayerContainer({
   showStats = false,
   includeNumbers = false,
 }: Props) {
-
   /**
    * If there are no players then display a loading screen as they are probably still loading
    */
   if (players.length == 0) {
     return (
-      <PageContainer data-testid='loading-screen'>
-        <CircularProgress/>
+      <PageContainer data-testid="loading-screen">
+        <CircularProgress />
       </PageContainer>
     );
   }
 
   return (
-    <div className={classes.MainContainer} data-testid='main-screen'>
+    <div className={classes.MainContainer} data-testid="main-screen">
       <Grid
         container
         rowSpacing={3}

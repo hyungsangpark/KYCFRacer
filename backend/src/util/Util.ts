@@ -7,7 +7,9 @@ interface UserWithSub extends Express.User {
  * @param user
  * @constructor
  */
-export const GetUserIdFromExpressUser: (user: Express.User | undefined) => string = (user: Express.User | undefined) => {
+export const GetUserIdFromExpressUser: (
+  user: Express.User | undefined
+) => string = (user: Express.User | undefined) => {
   if (user === undefined) {
     return "";
   }
@@ -18,5 +20,5 @@ export const GetUserIdFromExpressUser: (user: Express.User | undefined) => strin
     return "";
   }
 
-  return userWithSub.sub.split('|')[1];
+  return userWithSub.sub.split("|")[1];
 };

@@ -1,3 +1,3 @@
-import OtherPlayersLiveRaceStatsContainer from './OtherPlayersLiveRaceStatsContainer';
+import OtherPlayersLiveRaceStatsContainer from "./OtherPlayersLiveRaceStatsContainer";
 
 export default OtherPlayersLiveRaceStatsContainer;
